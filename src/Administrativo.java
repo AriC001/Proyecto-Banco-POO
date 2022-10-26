@@ -1,8 +1,8 @@
-public class Administrativo extends Empleados{//implements ATM{
+public class Administrativo extends Operaciones{//implements ATM{
 
 
-    public Administrativo(String n, int c, int s) {
-        super(n, c, s);
+    public Administrativo(String n, int c, int s,Banco banco) {
+        super(n, c, s, banco);
     }
 
     @Override

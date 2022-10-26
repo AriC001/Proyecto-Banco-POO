@@ -1,8 +1,9 @@
-public class Cajero extends Empleados{//implements ATM{
+public class Cajero extends Operaciones{//implements ATM{
 
+    //if pendDepo >0 esntonces opera, esta como lo hacemos
 
-    public Cajero(String n, int c, int s) {
-        super(n, c, s);
+    public Cajero(String n, int c, int s,Banco banco) {
+        super(n, c, s, banco);
     }
 
     public void deposito(){

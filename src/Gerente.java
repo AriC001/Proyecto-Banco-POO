@@ -1,7 +1,7 @@
-public class Gerente extends Empleados{
+public class Gerente extends Operaciones{
     //private
-    public Gerente(String n, int c, int s) {
-        super(n, c, s);
+    public Gerente(String n, int c, int s,Banco banco) {
+        super(n, c, s, banco);
     }
     public void transaccion(){
 

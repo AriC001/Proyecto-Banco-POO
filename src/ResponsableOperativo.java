@@ -1,8 +1,8 @@
-public class ResponsableOperativo extends Empleados{//implements ATM{
+public class ResponsableOperativo extends Operaciones{
 
 
-    public ResponsableOperativo(String n, int c, int s) {
-        super(n, c, s);
+    public ResponsableOperativo(String n, int c, int s,Banco banco) {
+        super(n, c, s, banco);
     }
 
     @Override

@@ -6,10 +6,7 @@ public class Banco {
     public Banco() {
     }
 
-    public Banco(int nroClientes, int nroEmpleados) {
-        this.nroClientes += nroClientes;
-        this.nroEmpleados += nroEmpleados;
-    }
+
     public Banco(int nroCorredores) {
         this.nroCorredores += nroCorredores;
     }

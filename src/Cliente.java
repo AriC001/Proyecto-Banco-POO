@@ -1,4 +1,4 @@
-public class Cliente{
+public class Cliente implements Operaciones{
     private String name;
     private int dNI;
     private int saldoPesos;
@@ -19,7 +19,6 @@ public class Cliente{
             a.Acciones((valAcc));
         }
     }
-
 
 
     public void imprimirDatos(){
@@ -45,4 +44,22 @@ public class Cliente{
             return valorAcciones;
         }
     }
+
+    public void Oper(){
+        Operaciones op = new Operaciones();
+        switch(random){
+            case 1 -> op.deposito(this.Cliente);  //no se si se puede hacer esto
+        }
+    }
+
+    public void deposito(op){
+
+    }
+    public void transaccion(){
+
+    }
+    public void prestamo(){}
+    public void mantenerCaja(){}
+    public void darAsesoramiento(){}
+    public void otros(){}
 }
