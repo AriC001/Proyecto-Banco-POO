@@ -1,5 +1,19 @@
+import java.time.LocalTime; // import the LocalTime class
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        LocalTime myObj = LocalTime.now();
+        System.out.println(myObj);
+        Banco banco = new Banco(0,0);
+        Cliente cl1 = new Cliente("Fernanda Borja",37168938,10000,0,0,banco);
+        Cliente cl2 = new Cliente("Nadia Trigo",37970626,10000,0,0,banco); //mandarlo a una "lista" para rechequear despues del siguiente cliente
+        Cliente cl3 = new Cliente("Luis Fernando",19592905,10000,0,0,banco);
+        Cliente cl4 = new Cliente("Antonio Conde",38262510,10000,0,0,banco);
+        Cliente cl5 = new Cliente("Rayan Macia",31238297,10000,0,0,banco);
+        Cliente cl6 = new Cliente("Margarita Pedrosa",38049952,10000,0,0,banco);
+        Cliente cl7 = new Cliente("Martha Ledesma",24574949,10000,0,0,banco);
+
+        System.out.println(banco.getClientes());
+        cl7.delete();
+        System.out.println(banco.getClientes());
     }
 }

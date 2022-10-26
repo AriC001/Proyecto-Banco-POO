@@ -1,12 +1,15 @@
-public class Cliente extends Banco{
+public class Cliente{
     private String name;
     private int dNI;
     private int saldoPesos;
     private int saldoDolares;
+    Banco cliente;
     //private String accountType;
 
-    public Cliente(String name, int dNI, int saldoPesos, int saldoDolares,int valAcc) {
-        super(1,0);
+    public Cliente(String name, int dNI, int saldoPesos, int saldoDolares,int valAcc, Banco cliente) {
+        //super(1,0);
+        this.cliente = cliente;
+        cliente.nroClientes +=1;
         this.name = name;
         this.dNI = dNI;
         this.saldoPesos = saldoPesos;
@@ -17,6 +20,8 @@ public class Cliente extends Banco{
         }
     }
 
+
+
     public void imprimirDatos(){
         System.out.print("Nombre: "+this.name + " DNI: " +this.dNI +" Saldo Pesos: "+this.saldoPesos+" Saldo Dolares: "+this.saldoDolares);
         Coorporativo a = new Coorporativo();
@@ -24,7 +29,9 @@ public class Cliente extends Banco{
         System.out.println("Valor Acciones: " + a.getValorAcciones());}
     }
 
-    public void delete(){}//
+    public void delete(){
+        this.cliente.nroClientes -=1;
+    }//
 
     public class Coorporativo{
         private int valorAcciones = 0;

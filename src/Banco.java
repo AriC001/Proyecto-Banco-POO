@@ -1,7 +1,10 @@
 public class Banco {
-    private int nroClientes = 0;
-    private int nroEmpleados = 0;
-    private int nroCorredores= 0;
+    protected int nroClientes = 0;
+    protected int nroEmpleados = 0;
+    protected int nroCorredores = 0;
+
+    public Banco() {
+    }
 
     public Banco(int nroClientes, int nroEmpleados) {
         this.nroClientes += nroClientes;
@@ -10,4 +13,9 @@ public class Banco {
     public Banco(int nroCorredores) {
         this.nroCorredores += nroCorredores;
     }
+
+    public int getClientes(){
+        return nroClientes;
+    }
 }
+

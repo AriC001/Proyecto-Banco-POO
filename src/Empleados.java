@@ -1,8 +1,9 @@
-abstract class Empleados extends Banco {
+abstract class Empleados extends Operaciones {
     protected String name;
     protected int cargo;
     protected int sueldo;
     protected String[] cargos;
+    protected int disponibles = 0;
 
     public Empleados(String n,int c,int s){
         super(0,1);

@@ -1,4 +1,4 @@
-public class Gerente extends Empleados implements ATM{
+public class Gerente extends Empleados{
     //private
     public Gerente(String n, int c, int s) {
         super(n, c, s);
