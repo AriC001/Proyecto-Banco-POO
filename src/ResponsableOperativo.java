@@ -1,37 +1,12 @@
-public class ResponsableOperativo extends Operaciones{
+public class ResponsableOperativo extends Empleados{
 
 
-    public ResponsableOperativo(String n, int c, int s,Banco banco) {
-        super(n, c, s, banco);
+    public ResponsableOperativo(String n, int c, int s) {
+        super(n,c,s);
     }
 
     @Override
-    void deposito() {
-
-    }
-
-    @Override
-    void transaccion() {
-
-    }
-
-    @Override
-    void prestamo() {
-
-    }
-
-    @Override
-    void mantenerCaja() {
-
-    }
-
-    @Override
-    void darAsesoramiento() {
-
-    }
-
-    @Override
-    void otros() {
+    public void atenderCliente(Cliente cl, String op, int monto) {
 
     }
 }

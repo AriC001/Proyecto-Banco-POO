@@ -1,23 +1,12 @@
-public class Operaciones extends Empleados {
+public interface Operaciones{
     // Empleados emp;
-    protected pendDeposito = 0;
-    protected pendTransaccion = 0;
-    protected pendPrestamo = 0; //admin?
-    protected pendAsesoramiento = 0;
-    protected pendCaja = 0;
+    /*protected int pendDeposito = 0;
+    protected int  pendTransaccion = 0;
+    protected int  pendPrestamo = 0; //admin?
+    protected int pendAsesoramiento = 0;
+    protected int pendCaja = 0;
 
-    public Operaciones(String n, int c, int s,Banco banco) {
-        super(n, c, s, banco);
-    }
-
-
-    public void deposito(CLiente cl){
-        this.pendDeposito+=1;
-    }
-    public void transaccion(){}
-    public void prestamo(){}
-    public void mantenerCaja(){}
-    public void darAsesoramiento(){}
-    public void otros(){}
-
+    public Operaciones(String n, int c, int s) {
+    }*/
+    public boolean atenderCliente(Cliente cl,String op, int monto);
 }

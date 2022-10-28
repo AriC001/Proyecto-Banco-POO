@@ -6,10 +6,10 @@ public class Cliente implements Operaciones{
     Banco cliente;
     //private String accountType;
 
-    public Cliente(String name, int dNI, int saldoPesos, int saldoDolares,int valAcc, Banco cliente) {
+    public Cliente(String name, int dNI, int saldoPesos, int saldoDolares,int valAcc) {
         //super(1,0);
-        this.cliente = cliente;
-        cliente.nroClientes +=1;
+        //this.cliente = cliente;
+        //cliente.nroClientes +=1;
         this.name = name;
         this.dNI = dNI;
         this.saldoPesos = saldoPesos;
@@ -28,9 +28,19 @@ public class Cliente implements Operaciones{
         System.out.println("Valor Acciones: " + a.getValorAcciones());}
     }
 
-    public void delete(){
+    /*public void delete(){
         this.cliente.nroClientes -=1;
-    }//
+    }*/
+
+
+    public void serAtendido(Cliente cl, String op, int monto) {
+        atenderCliente( cl,  op, monto);
+    }
+
+    @Override
+    public void atenderCliente(Cliente cl, String op, int monto) {
+
+    }
 
     public class Coorporativo{
         private int valorAcciones = 0;
@@ -45,21 +55,25 @@ public class Cliente implements Operaciones{
         }
     }
 
-    public void Oper(){
+    public int getSaldoPesos() {
+        return saldoPesos;
+    }
+
+    public void setSaldoPesos(int saldoPesos) {
+        this.saldoPesos = saldoPesos;
+    }
+
+    public int getSaldoDolares() {
+        return saldoDolares;
+    }
+
+    public void setSaldoDolares(int saldoDolares) {
+        this.saldoDolares = saldoDolares;
+    }
+/*public void Oper(){
         Operaciones op = new Operaciones();
         switch(random){
             case 1 -> op.deposito(this.Cliente);  //no se si se puede hacer esto
         }
-    }
-
-    public void deposito(op){
-
-    }
-    public void transaccion(){
-
-    }
-    public void prestamo(){}
-    public void mantenerCaja(){}
-    public void darAsesoramiento(){}
-    public void otros(){}
+    }*/
 }
