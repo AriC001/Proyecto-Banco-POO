@@ -11,7 +11,10 @@ public class Gerente extends Empleados implements OperacionesCajero{
     }
 
     @Override
-    public boolean atenderCliente(Cliente cl, int monto,char moneda) {
+    public boolean atenderCliente(Cliente cl) {
+        String[] info = cl.getInfoOperacion().split(" ");
+        int monto = Integer.parseInt(info[0]);
+        char moneda = info[1].charAt(0);
         switch (cl.getOperacion()){
             case "Deposito" -> {
                 System.out.println("hola");

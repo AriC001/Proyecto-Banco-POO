@@ -7,10 +7,12 @@ public class Cajero extends Empleados implements OperacionesCajero {
         super(nombre,carco,sueldo);
     }
     @Override
-    public boolean atenderCliente(Cliente cl, int monto,char moneda) {
+    public boolean atenderCliente(Cliente cl) {
+        String[] info = cl.getInfoOperacion().split(" ");
+        int monto = Integer.parseInt(info[0]);
+        char moneda = info[1].charAt(0);
         switch (cl.getOperacion()){
             case "Deposito" -> {
-                    System.out.println("hola");
                     return deposito(cl,monto,moneda);
             }
             case "Ingresar cheque" -> {
@@ -25,20 +27,21 @@ public class Cajero extends Empleados implements OperacionesCajero {
 
     public boolean deposito(Cliente cl, int monto,char moneda) {
         if(!this.busy){
+            System.out.println("Atendiendo " + this.name);
             this.busy = true;
-            this.tiempoOcupadoMin = this.getMinutes() + 1;
-            this.tiempoOcupadoSec = this.getSeconds() + 30;
+            this.tiempoOcupadoMin = this.getMinutes() + 0;
+            this.tiempoOcupadoSec = this.getSeconds() + 1;
             if(moneda == 'p'){
                 int saldo = cl.getSaldoPesos();
                 saldo += monto;
                 cl.setSaldoPesos(saldo);
-                System.out.println(cl.getSaldoPesos());
+                //System.out.println(cl.getSaldoPesos());
                 return true;
             }else{
                 int saldo = cl.getSaldoDolares();
                 saldo += monto;
                 cl.setSaldoDolares(saldo);
-                System.out.println(cl.getSaldoDolares());
+                //System.out.println(cl.getSaldoDolares());
                 return true;
             }
         }else{
@@ -46,7 +49,7 @@ public class Cajero extends Empleados implements OperacionesCajero {
                 this.busy = false;
                 return deposito(cl,monto,moneda);
             }else{
-                System.out.println("Empleado: " + this.name + " " + getCargo() + " ocupado.");
+                System.out.println("Empleado: " + this.name + " " + getCargo() + " ocupado." + cl.getName());
                 return false;
             }
         }

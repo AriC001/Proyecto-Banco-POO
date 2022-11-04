@@ -7,8 +7,11 @@ public class Administrativo extends Empleados implements OperacionesAdministrati
 
 
     @Override
-    public boolean atenderCliente(Cliente cl, int monto,char moneda) {
-        String tipo[] = cl.getOperacion().split(" ");
+    public boolean atenderCliente(Cliente cl) {
+        String[] tipo = cl.getOperacion().split(" ");
+        String[] info = cl.getInfoOperacion().split(" ");
+        int monto = Integer.parseInt(info[0]);
+        char moneda = info[1].charAt(0);
         switch (tipo[0]){
             case "Prestamo" -> {
                 return prestamo(cl,tipo);

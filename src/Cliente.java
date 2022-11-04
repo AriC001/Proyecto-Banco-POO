@@ -4,10 +4,11 @@ public class Cliente implements Operaciones{
     private int saldoPesos;
     private int saldoDolares;
     private String operacion;
+    private String infoOperacion;
     Banco cliente;
     //private String accountType;
 
-    public Cliente(String name, int dNI, int saldoPesos, int saldoDolares,int valAcc,String op) {
+    public Cliente(String name, int dNI, int saldoPesos, int saldoDolares,int valAcc,String op,int monto,char moneda) {
         //super(1,0);
         //this.cliente = cliente;
         //cliente.nroClientes +=1;
@@ -16,6 +17,7 @@ public class Cliente implements Operaciones{
         this.dNI = dNI;
         this.saldoPesos = saldoPesos;
         this.saldoDolares = saldoDolares;
+        this.infoOperacion = monto + " " + moneda;
         if(valAcc > 0){
             Coorporativo a = new Coorporativo();
             a.Acciones((valAcc));
@@ -30,19 +32,16 @@ public class Cliente implements Operaciones{
         System.out.println("Valor Acciones: " + a.getValorAcciones());}
     }
 
+    @Override
+    public boolean atenderCliente(Cliente cl) {
+        return false;
+    }
+
     /*public void delete(){
         this.cliente.nroClientes -=1;
     }*/
 
 
-    public void serAtendido(Cliente cl, int monto,char moneda) {
-        atenderCliente( cl, monto,moneda);
-    }
-
-    @Override
-    public boolean atenderCliente(Cliente cl, int monto,char moneda) {
-        return false;
-    }
 
     public class Coorporativo{
         private int valorAcciones = 0;
@@ -75,7 +74,20 @@ public class Cliente implements Operaciones{
     public String getOperacion() {
         return this.operacion;
     }
-/*public void Oper(){
+
+    public String getInfoOperacion() {
+        return infoOperacion;
+    }
+
+    public void setInfoOperacion(String infoOperacion) {
+        this.infoOperacion = infoOperacion;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    /*public void Oper(){
         Operaciones op = new Operaciones();
         switch(random){
             case 1 -> op.deposito(this.Cliente);  //no se si se puede hacer esto

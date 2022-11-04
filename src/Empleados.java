@@ -35,6 +35,8 @@ abstract class Empleados implements Operaciones {
         return cargos[this.cargo];
     }
 
+    public abstract boolean atenderCliente(Cliente cl);
+
     //@Override
     //public boolean atenderCliente(Cliente cl, int monto, char moneda) {
      //   return false;
