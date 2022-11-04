@@ -2,7 +2,9 @@ public interface OperacionesCajero extends Operaciones {
 
 
 
-    void atenderCliente(Cliente cl, String ope, int monto);
+    boolean atenderCliente(Cliente cl, int monto,char moneda);
 
-    public boolean deposito(Cliente cl, int monto);
+    public boolean deposito(Cliente cl, int monto, char moneda);
+
+    public boolean transaccion(Cliente cl, int monto,char moneda);
 }

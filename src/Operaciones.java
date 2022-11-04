@@ -8,5 +8,5 @@ public interface Operaciones{
 
     public Operaciones(String n, int c, int s) {
     }*/
-    public boolean atenderCliente(Cliente cl,String op, int monto);
+    public boolean atenderCliente(Cliente cl, int monto, char moneda);
 }

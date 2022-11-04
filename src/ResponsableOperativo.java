@@ -6,7 +6,7 @@ public class ResponsableOperativo extends Empleados{
     }
 
     @Override
-    public void atenderCliente(Cliente cl, String op, int monto) {
-
+    public boolean atenderCliente(Cliente cl, int monto) {
+        return false;
     }
 }

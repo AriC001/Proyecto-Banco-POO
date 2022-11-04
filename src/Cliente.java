@@ -3,13 +3,15 @@ public class Cliente implements Operaciones{
     private int dNI;
     private int saldoPesos;
     private int saldoDolares;
+    private String operacion;
     Banco cliente;
     //private String accountType;
 
-    public Cliente(String name, int dNI, int saldoPesos, int saldoDolares,int valAcc) {
+    public Cliente(String name, int dNI, int saldoPesos, int saldoDolares,int valAcc,String op) {
         //super(1,0);
         //this.cliente = cliente;
         //cliente.nroClientes +=1;
+        this.operacion = op;
         this.name = name;
         this.dNI = dNI;
         this.saldoPesos = saldoPesos;
@@ -33,13 +35,13 @@ public class Cliente implements Operaciones{
     }*/
 
 
-    public void serAtendido(Cliente cl, String op, int monto) {
-        atenderCliente( cl,  op, monto);
+    public void serAtendido(Cliente cl, int monto,char moneda) {
+        atenderCliente( cl, monto,moneda);
     }
 
     @Override
-    public void atenderCliente(Cliente cl, String op, int monto) {
-
+    public boolean atenderCliente(Cliente cl, int monto,char moneda) {
+        return false;
     }
 
     public class Coorporativo{
@@ -69,6 +71,9 @@ public class Cliente implements Operaciones{
 
     public void setSaldoDolares(int saldoDolares) {
         this.saldoDolares = saldoDolares;
+    }
+    public String getOperacion() {
+        return this.operacion;
     }
 /*public void Oper(){
         Operaciones op = new Operaciones();
