@@ -1,20 +1,20 @@
 import java.time.LocalTime;
 abstract class Empleados implements Operaciones {
-    public LocalTime myObj = LocalTime.now();
+
     protected String name ;
     protected int cargo;
     protected int sueldo;
     protected String[] cargos;
     protected boolean busy;
-    protected int tiempoOcupadoMin;
+    protected LocalTime tiempoOcupado;
     protected int tiempoOcupadoSec;
+    protected int points = 0;
 
     public Empleados(String n,int c,int s){
         this.cargo = c; //cargos[c] = "Cargo" (gerente...)
         this.name = n;
         this.sueldo = s;
         this.busy = false;
-        this.tiempoOcupadoMin = 0;
         this.tiempoOcupadoSec = 0;
         this.cargos = new String[]{"Cajero", "Responsable Operativo", "Administrativo", "Gerente"};
         /*switch(c){
@@ -24,11 +24,13 @@ abstract class Empleados implements Operaciones {
             case 3 -> this.nroGerentes+=1;
         }*/
     }
-    protected int getMinutes(){
-        return myObj.getMinute();
+    public Empleados(){}
+    protected LocalTime getActualHour(){
+        LocalTime myObj = LocalTime.now();
+        return myObj;
     }
     protected int getSeconds(){
-        return myObj.getSecond();
+        LocalTime myObj = LocalTime.now(); return myObj.getSecond();
     }
 
     public String getCargo() {

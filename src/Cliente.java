@@ -5,6 +5,9 @@ public class Cliente implements Operaciones{
     private int saldoDolares;
     private String operacion;
     private String infoOperacion;
+    private boolean atendido = false;
+    private float interes;
+    private int prestamo = 0;
     Banco cliente;
     //private String accountType;
 
@@ -23,10 +26,24 @@ public class Cliente implements Operaciones{
             a.Acciones((valAcc));
         }
     }
+    public Cliente(String name, int dNI, int saldoPesos, int saldoDolares,int valAcc,String op) {
+        this.operacion = op;
+        this.name = name;
+        this.dNI = dNI;
+        this.saldoPesos = saldoPesos;
+        this.saldoDolares = saldoDolares;
+        if(valAcc > 0){
+            Coorporativo a = new Coorporativo();
+            a.Acciones((valAcc));
+        }
+    }
 
 
     public void imprimirDatos(){
-        System.out.print("Nombre: "+this.name + " DNI: " +this.dNI +" Saldo Pesos: "+this.saldoPesos+" Saldo Dolares: "+this.saldoDolares);
+        System.out.print("Nombre: "+this.name + " DNI: " +this.dNI +" Saldo Pesos: $"+this.saldoPesos+" Saldo Dolares: $"+this.saldoDolares + " Atendido: " + this.atendido);
+        if(this.prestamo != 0){
+            System.out.print(" Prestamo: " + this.prestamo + " Interes: " + this.interes);
+        }
         Coorporativo a = new Coorporativo();
         if( a.getValorAcciones() >0){
         System.out.println("Valor Acciones: " + a.getValorAcciones());}
@@ -57,7 +74,7 @@ public class Cliente implements Operaciones{
     }
 
     public int getSaldoPesos() {
-        return saldoPesos;
+        return this.saldoPesos;
     }
 
     public void setSaldoPesos(int saldoPesos) {
@@ -87,6 +104,20 @@ public class Cliente implements Operaciones{
         return this.name;
     }
 
+    public void setAtendido() {
+        this.atendido = true;
+    }
+    public boolean getAtendido(){
+        return this.atendido;
+    }
+
+    public void setInteres(float interes) {
+        this.interes = interes;
+    }
+
+    public void setPrestamo(int prestamo) {
+        this.prestamo = prestamo;
+    }
     /*public void Oper(){
         Operaciones op = new Operaciones();
         switch(random){

@@ -1,10 +1,10 @@
-public class CorredorBolsa extends Banco {
+public class CorredorBolsa{
     private String name;
     //private int number; ??
 
 
     public CorredorBolsa(String name) {
-        super(1);
+        //super(1);
         this.name = name;
     }
 }

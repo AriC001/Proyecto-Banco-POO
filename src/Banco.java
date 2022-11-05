@@ -9,19 +9,49 @@ public class Banco {
     private List<Empleados> empleados;
 
     public Banco(String name,List<Empleados> empleados, List<Cliente> clientes) {
-        this.clientes = clientes;
-        this.empleados = empleados;
         this.name = name;
+        this.empleados = empleados;
+        this.clientes = clientes;
+        nroClientes= clientes.size();
+        nroEmpleados= empleados.size();
     }
 
 
+    public void getClientes(){
+        int i = 0;
+        try{
+            while(this.clientes.get(i) != null){
+                Cliente cliente = clientes.get(i);
+                cliente.imprimirDatos();
+                System.out.println("");
+                Thread.sleep(1500);
+                i++;
+            }
+        }catch (Exception e){
 
-    public Banco(int nroCorredores) {
-        this.nroCorredores += nroCorredores;
+        }
     }
 
-    public int getClientes(){
+    public int getNroClientes() {
         return nroClientes;
+    }
+
+    public int getNroEmpleados() {
+        return nroEmpleados;
+    }
+
+    public void getEmpleado(){
+        int i = 0;
+        try{
+            while(this.empleados.get(i) != null){
+                Empleados empleado = empleados.get(i);
+                empleado.imprimirDatos();
+                Thread.sleep(1000);
+                i++;
+            }
+        }catch (Exception e){
+
+        }
     }
 }
 

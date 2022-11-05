@@ -1,5 +1,8 @@
-public class Cajero extends Empleados implements OperacionesCajero {
+import java.time.Duration;
+import java.util.Random;
 
+public class Cajero extends Empleados implements OperacionesCajero {
+    Gerente gerente = new Gerente();
 
     //if pendDepo >0 esntonces opera, esta como lo hacemos
 
@@ -13,28 +16,46 @@ public class Cajero extends Empleados implements OperacionesCajero {
         char moneda = info[1].charAt(0);
         switch (cl.getOperacion()){
             case "Deposito" -> {
-                    return deposito(cl,monto,moneda);
+                if(deposito(cl,monto,moneda) == true){
+                    subirDeRango();
+                    return true;
+                }
             }
             case "Ingresar cheque" -> {
-                    return transaccion(cl,monto,moneda);
+                if(transaccion(cl,monto,moneda) == true){
+                    subirDeRango();
+                    return true;
+                }
             }
-            case "Transferencia" -> {
-                    return transaccion(cl,-monto,moneda);
+            case "Transaccion" -> {
+                if(transaccion(cl,-monto,moneda) == true){
+                    subirDeRango();
+                    return true;
+                }
             }
         }
         return false;
     }
 
+    public void subirDeRango(){
+        if ((int) ((Math.random() * (3 - 1)) + 1) == 1) {
+            this.points ++;
+            if(points == 5){
+                gerente.rankUp(this);
+            }
+        }
+    }
+
+
     public boolean deposito(Cliente cl, int monto,char moneda) {
-        if(!this.busy){
-            System.out.println("Atendiendo " + this.name);
+        if(this.busy == false){
             this.busy = true;
-            this.tiempoOcupadoMin = this.getMinutes() + 0;
-            this.tiempoOcupadoSec = this.getSeconds() + 1;
+            this.tiempoOcupado = this.getActualHour().plus(Duration.ofSeconds(0));
             if(moneda == 'p'){
                 int saldo = cl.getSaldoPesos();
                 saldo += monto;
                 cl.setSaldoPesos(saldo);
+                cl.setAtendido();
                 //System.out.println(cl.getSaldoPesos());
                 return true;
             }else{
@@ -42,55 +63,46 @@ public class Cajero extends Empleados implements OperacionesCajero {
                 saldo += monto;
                 cl.setSaldoDolares(saldo);
                 //System.out.println(cl.getSaldoDolares());
+                cl.setAtendido();
                 return true;
             }
         }else{
-            if(this.tiempoOcupadoMin < this.getMinutes() || this.tiempoOcupadoMin == this.getMinutes() && this.tiempoOcupadoSec <= this.getSeconds()){
+            if(this.getActualHour().compareTo(tiempoOcupado) >= 0){
                 this.busy = false;
-                return deposito(cl,monto,moneda);
+                return this.deposito(cl,monto,moneda);
             }else{
-                System.out.println("Empleado: " + this.name + " " + getCargo() + " ocupado." + cl.getName());
+                //System.out.println("Empleado: " + this.name + " " + getCargo() + " ocupado." + cl.getName());
                 return false;
             }
         }
     }
 
     public boolean transaccion(Cliente cl, int monto,char moneda) {
-        if(!this.busy){
+        if(this.busy == false){
             this.busy = true;
-            this.tiempoOcupadoMin = this.getMinutes() + 1;
-            this.tiempoOcupadoSec = this.getSeconds() + 30;
+            this.tiempoOcupado = this.getActualHour().plus(Duration.ofSeconds(0));
             if(moneda == 'p'){
-                if(Math.abs(monto) < 100000){
-                    int saldo = cl.getSaldoPesos();
-                    saldo += monto;
-                    cl.setSaldoPesos(saldo);
-                    System.out.println(cl.getSaldoPesos());
-                    return true;
-                }else {
-                    //gerente
-                }
+                int saldo = cl.getSaldoPesos();
+                saldo += monto;
+                cl.setSaldoPesos(saldo);
+                cl.setAtendido();
+                return true;
             }else{
-                if(Math.abs(monto) < 10000){
-                    int saldo = cl.getSaldoDolares();
-                    saldo += monto;
-                    cl.setSaldoDolares(saldo);
-                    System.out.println(cl.getSaldoDolares());
-                    return true;
-                }else {
-                    //gerente
-                }
+                int saldo = cl.getSaldoDolares();
+                saldo += monto;
+                cl.setSaldoDolares(saldo);
+                cl.setAtendido();
+                return true;
             }
         }else{
-            if(this.tiempoOcupadoMin < this.getMinutes() || this.tiempoOcupadoMin == this.getMinutes() && this.tiempoOcupadoSec <= this.getSeconds()){
+            if(this.getActualHour().compareTo(tiempoOcupado) >= 0){
                 this.busy = false;
                 return transaccion(cl,monto,moneda);
             }else {
-                System.out.println("Empleado: " + this.name + " " + getCargo() + " ocupado.");
+                //System.out.println("Empleado: " + this.name + " " + getCargo() + " ocupado.");
                 return false;
             }
         }
-        return false;
     }
 
 
