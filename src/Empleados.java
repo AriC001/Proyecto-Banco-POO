@@ -33,6 +33,11 @@ abstract class Empleados implements Operaciones {
         return cargos[this.cargo];
     }
 
+    public void imprimirDatos(){
+        System.out.print("\u001B[38;5;47m"+"Nombre: "+"\u001B[0m" + this.name);
+        System.out.print("\u001B[38;5;47m"+" Cargo: "+"\u001B[0m" + cargos[this.cargo]);
+        System.out.println("\u001B[38;5;47m"+" Sueldo: "+"\u001B[0m"+"$"+ this.sueldo);
+    }
     public abstract boolean atenderCliente(Cliente cl);
 
     //@Override

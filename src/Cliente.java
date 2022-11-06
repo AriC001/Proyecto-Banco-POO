@@ -40,14 +40,21 @@ public class Cliente {
 
 
     public void imprimirDatos(){
-        System.out.print("Nombre: "+this.name + " DNI: " +this.dNI +" Saldo Pesos: $"+this.saldoPesos+" Saldo Dolares: $"+this.saldoDolares + " Atendido: " + this.atendido);
+        System.out.print("\u001B[38;5;214m"+"Nombre: "+"\u001B[0m"+this.name +"\u001B[38;5;214m"+ " DNI: " +"\u001B[0m"+this.dNI +"\u001B[38;5;214m");
+        if (this.saldoPesos < 0) {
+            System.out.print("\u001B[38;5;214m"+" Saldo Pesos: "+"\u001B[0m"+"\u001B[38;5;196m"+"$"+this.saldoPesos+"\u001B[38;5;0m");
+        }else{System.out.print("\u001B[38;5;214m"+" Saldo Pesos: "+"\u001B[0m"+"$"+this.saldoPesos);}
+        if (this.saldoDolares < 0){
+            System.out.print("\u001B[38;5;214m"+" Saldo Dolares: "+"\u001B[0m"+"\u001B[38;5;196m"+"$"+this.saldoDolares);
+        }else{System.out.print("\u001B[38;5;214m"+" Saldo Dolares: "+"\u001B[0m"+ "$"+this.saldoDolares);}
+        System.out.print("\u001B[38;5;214m"+ " Atendido: " + "\u001B[38;5;1m"+this.atendido);
         if(this.prestamo != 0){
-            System.out.print(" Prestamo: " + this.prestamo + " Interes: " + this.interes);
+            System.out.print("\u001B[38;5;214m"+" Prestamo: "+"\u001B[0m"+"$" + this.prestamo +"\u001B[38;5;214m"+ " Interes: " + "\u001B[0m"+this.interes);
         }
         Coorporativo a = new Coorporativo();
         if( a.getValorAcciones() >0){
-        System.out.print(" Valor Acciones: " + a.getValorAcciones());}
-        System.out.println("");
+            System.out.println("\u001B[38;5;214m"+"Valor Acciones: " +"\u001B[0m"+ a.getValorAcciones());}
+        else {System.out.println("");}
     }
 
 
