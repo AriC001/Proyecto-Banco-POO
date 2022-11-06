@@ -1,13 +1,15 @@
 import java.time.Duration;
 
-public class Gerente extends Empleados implements OperacionesCajero{
+public class Gerente extends Empleados {
+    private final Banco publicEnemy;
 
-
-    public Gerente(String n, int c, int s) {
+    public Gerente(String n, int c, int s,Banco banco) {
         super(n, c, s);
+        publicEnemy = banco;
     }
-    public Gerente() {
+    public Gerente(Banco publicEnemy) {
         super();
+        this.publicEnemy = publicEnemy;
     }
 
 
@@ -37,7 +39,7 @@ public class Gerente extends Empleados implements OperacionesCajero{
     public boolean deposito(Cliente cl, int monto,char moneda) {
         if(this.busy == false){
             this.busy = true;
-            this.tiempoOcupado = this.getActualHour().plus(Duration.ofSeconds(0));
+            this.tiempoOcupado = this.getActualHour().plus(Duration.ofSeconds(10));
             if(moneda == 'p'){
                 int saldo = cl.getSaldoPesos();
                 saldo += monto;
@@ -63,7 +65,7 @@ public class Gerente extends Empleados implements OperacionesCajero{
     public boolean transaccion(Cliente cl, int monto,char moneda) {
         if(this.busy == false){
             this.busy = true;
-            this.tiempoOcupado = this.getActualHour().plus(Duration.ofSeconds(0));
+            this.tiempoOcupado = this.getActualHour().plus(Duration.ofSeconds(10));
             if(moneda == 'p'){
                 int saldo = cl.getSaldoPesos();
                 saldo += monto;

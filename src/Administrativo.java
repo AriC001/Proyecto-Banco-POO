@@ -1,10 +1,11 @@
 import java.time.Duration;
 
-public class Administrativo extends Empleados implements OperacionesAdministrativos{//implements ATM{
+public class Administrativo extends Empleados{
 
-
-    public Administrativo(String n, int c, int s) {
+    private final Banco publicEnemy;
+    public Administrativo(String n, int c, int s,Banco banco) {
         super(n,c,s);
+        publicEnemy = banco;
     }
 
 
@@ -28,12 +29,13 @@ public class Administrativo extends Empleados implements OperacionesAdministrati
     public boolean prestamo(Cliente cl,String[] tipo,String[] info){
         if(this.busy == false){
             this.busy = true;
-            this.tiempoOcupado = this.getActualHour().plus(Duration.ofSeconds(0));
+            this.tiempoOcupado = this.getActualHour().plus(Duration.ofSeconds(12));
             switch (tipo[1]) {
                 case "PYME" -> {
                     int monto = Integer.parseInt(info[0]);
                     float interes = 0.02f;
                     cl.setPrestamo(monto);
+                    publicEnemy.prestamo(monto);
                     cl.setInteres(interes);
                     cl.setAtendido();
                     //RETORNAR TRUE pero que hacemos con estos datos? atributos del cliente?
@@ -43,6 +45,7 @@ public class Administrativo extends Empleados implements OperacionesAdministrati
                     int monto = Integer.parseInt(info[0]);
                     float interes = 0.125f;
                     cl.setPrestamo(monto);
+                    publicEnemy.prestamo(monto);
                     cl.setInteres(interes);
                     cl.setAtendido();
                     return true;
@@ -51,6 +54,7 @@ public class Administrativo extends Empleados implements OperacionesAdministrati
                     int monto = Integer.parseInt(info[0]);
                     float interes = 0.05f;
                     cl.setPrestamo(monto);
+                    publicEnemy.prestamo(monto);
                     cl.setInteres(interes);
                     cl.setAtendido();
                     return true;
@@ -71,11 +75,9 @@ public class Administrativo extends Empleados implements OperacionesAdministrati
         if(this.busy == false){
             //System.out.println("H");
             this.busy = true;
-            this.tiempoOcupado = this.getActualHour().plus(Duration.ofSeconds(0));
+            this.tiempoOcupado = this.getActualHour().plus(Duration.ofSeconds(15));
             if(moneda == 'p'){ //moneda q quiere
                 if(monto <= (cl.getSaldoDolares() * 156)){
-                   System.out.println("a");
-                   cl.imprimirDatos();
                    int saldoP = cl.getSaldoPesos() + (monto * 156);
                    int saldoD = cl.getSaldoDolares() - monto;
                    cl.setSaldoPesos(saldoP);
@@ -83,12 +85,10 @@ public class Administrativo extends Empleados implements OperacionesAdministrati
                    cl.setAtendido();
                    return true;
                 }else{
-                    System.out.println("c");
                     return false;
                 }
             }else{
                 if(monto <= ( cl.getSaldoPesos() / 165)){
-                    System.out.println("b");
                     int saldoP = cl.getSaldoDolares() + (monto / 165);
                     int saldoD = cl.getSaldoPesos() - monto;
                     cl.setSaldoPesos(saldoP);
@@ -96,7 +96,6 @@ public class Administrativo extends Empleados implements OperacionesAdministrati
                     cl.setAtendido();
                     return true;
                 }else{
-                    System.out.println("n");
                 }
             }
 
@@ -105,7 +104,7 @@ public class Administrativo extends Empleados implements OperacionesAdministrati
                 this.busy = false;
                 return cambioMoneda(cl,monto,moneda);
             }else{
-                System.out.println("Empleado: " + this.name + " " + getCargo() + " ocupado. " + cl.getName());
+                //System.out.println("Empleado: " + this.name + " " + getCargo() + " ocupado. " + cl.getName());
                 return false;
             }
         }

@@ -1,4 +1,4 @@
-public class Cliente implements Operaciones{
+public class Cliente {
     private String name;
     private int dNI;
     private int saldoPesos;
@@ -46,13 +46,11 @@ public class Cliente implements Operaciones{
         }
         Coorporativo a = new Coorporativo();
         if( a.getValorAcciones() >0){
-        System.out.println("Valor Acciones: " + a.getValorAcciones());}
+        System.out.print(" Valor Acciones: " + a.getValorAcciones());}
+        System.out.println("");
     }
 
-    @Override
-    public boolean atenderCliente(Cliente cl) {
-        return false;
-    }
+
 
     /*public void delete(){
         this.cliente.nroClientes -=1;

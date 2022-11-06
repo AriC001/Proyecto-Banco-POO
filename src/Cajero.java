@@ -1,13 +1,15 @@
 import java.time.Duration;
-import java.util.Random;
 
-public class Cajero extends Empleados implements OperacionesCajero {
-    Gerente gerente = new Gerente();
+public class Cajero extends Empleados {
+    Gerente gerente;
+    private final Banco publicEnemy;
 
     //if pendDepo >0 esntonces opera, esta como lo hacemos
 
-    public Cajero(String nombre, int carco, int sueldo) {
+    public Cajero(String nombre, int carco, int sueldo,Banco banco) {
         super(nombre,carco,sueldo);
+        publicEnemy = banco;
+        gerente = new Gerente(publicEnemy);
     }
     @Override
     public boolean atenderCliente(Cliente cl) {
@@ -50,7 +52,7 @@ public class Cajero extends Empleados implements OperacionesCajero {
     public boolean deposito(Cliente cl, int monto,char moneda) {
         if(this.busy == false){
             this.busy = true;
-            this.tiempoOcupado = this.getActualHour().plus(Duration.ofSeconds(0));
+            this.tiempoOcupado = this.getActualHour().plus(Duration.ofSeconds(12));
             if(moneda == 'p'){
                 int saldo = cl.getSaldoPesos();
                 saldo += monto;
@@ -80,7 +82,7 @@ public class Cajero extends Empleados implements OperacionesCajero {
     public boolean transaccion(Cliente cl, int monto,char moneda) {
         if(this.busy == false){
             this.busy = true;
-            this.tiempoOcupado = this.getActualHour().plus(Duration.ofSeconds(0));
+            this.tiempoOcupado = this.getActualHour().plus(Duration.ofSeconds(15));
             if(moneda == 'p'){
                 int saldo = cl.getSaldoPesos();
                 saldo += monto;

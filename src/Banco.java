@@ -7,6 +7,7 @@ public class Banco {
     protected int nroCorredores = 0;
     private List<Cliente> clientes;
     private List<Empleados> empleados;
+    private int reservas = 10000000;
 
     public Banco(String name,List<Empleados> empleados, List<Cliente> clientes) {
         this.name = name;
@@ -17,20 +18,12 @@ public class Banco {
     }
 
 
-    public void getClientes(){
-        int i = 0;
-        try{
-            while(this.clientes.get(i) != null){
-                Cliente cliente = clientes.get(i);
-                cliente.imprimirDatos();
-                System.out.println("");
-                Thread.sleep(1500);
-                i++;
+    public void getClientes() throws InterruptedException {
+            for(int j = 0; j < clientes.size();j++){
+                clientes.get(j).imprimirDatos();
+                Thread.sleep(500);
             }
-        }catch (Exception e){
-
         }
-    }
 
     public int getNroClientes() {
         return nroClientes;
@@ -40,18 +33,18 @@ public class Banco {
         return nroEmpleados;
     }
 
-    public void getEmpleado(){
-        int i = 0;
-        try{
-            while(this.empleados.get(i) != null){
-                Empleados empleado = empleados.get(i);
-                empleado.imprimirDatos();
-                Thread.sleep(1000);
-                i++;
+    public void getEmpleado() {
+            for(int j = 0; j < empleados.size();j++){
+                empleados.get(j).imprimirDatos();
             }
-        }catch (Exception e){
+    }
 
-        }
+    public void prestamo(int monto){
+        this.reservas -= monto;
+    }
+
+    public int getReservas(){
+        return this.reservas;
     }
 }
 

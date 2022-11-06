@@ -10,8 +10,8 @@ public class Main {
 
         List<Cliente> clientes = new LinkedList<>();
         Cliente cl1 = new Cliente("Fernanda Borja",37168938,337302,0,0,"Deposito",10000,'p');
-        Cliente cl2 = new Cliente("Nadia Trigo",37970626,611868,0,0,"Deposito",5000,'d'); //mandarlo a una "lista" para rechequear despues del siguiente cliente
-        Cliente cl3 = new Cliente("Luis Fernando",19592905,274989,0,0,"Prestamo PYME", 100000,'p'); //Contructor 2 fijar si todo en una string o por variables separadas
+        Cliente cl2 = new Cliente("Nadia Trigo",37970626,611868,0,0,"Deposito",5000,'d');
+        Cliente cl3 = new Cliente("Luis Fernando",19592905,274989,0,0,"Prestamo PYME", 100000,'p');
         Cliente cl4 = new Cliente("Antonio Conde",38262510,1710,0,0,"Deposito",6000,'p');
         Cliente cl5 = new Cliente("Rayan Macia",31238297,4730142,0,0,"CambioMoneda",6000,'d');
         Cliente cl6 = new Cliente("Margarita Pedrosa",38049952,440884,0,0,"Deposito",6000,'p');
@@ -52,44 +52,46 @@ public class Main {
         clientes.add(cl1);clientes.add(cl2);clientes.add(cl3);clientes.add(cl4);clientes.add(cl5);clientes.add(cl6);clientes.add(cl7);clientes.add(cl8);clientes.add(cl9);clientes.add(cl10);clientes.add(cl11);clientes.add(cl12);clientes.add(cl13);clientes.add(cl14);clientes.add(cl15);clientes.add(cl16);clientes.add(cl17);clientes.add(cl18);clientes.add(cl19);clientes.add(cl20);clientes.add(cl21);clientes.add(cl22);clientes.add(cl23);clientes.add(cl24);clientes.add(cl25);clientes.add(cl26);clientes.add(cl27);clientes.add(cl28);clientes.add(cl29);clientes.add(cl30);clientes.add(cl31);clientes.add(cl32);clientes.add(cl33);clientes.add(cl34);clientes.add(cl35);clientes.add(cl36);clientes.add(cl37);clientes.add(cl38);clientes.add(cl39);clientes.add(cl40);
 
         List<Empleados> cajeros = new LinkedList<>();
-        Empleados cajero1 = new Cajero("Alberto Megias",0,50000);
-        Empleados cajero2 = new Cajero("Augusto Saiz",0,95000);
-        Empleados cajero3 = new Cajero("Clotilde Mora",0,95000);
-        Empleados cajero4 = new Cajero("Lucas Mariscal",0,95000);
-        Empleados cajero5 = new Cajero("Josefa Tortosa",0,95000);
-        Empleados cajero6 = new Cajero("Rayan Borrego",0,95000);
-        cajeros.add(cajero1);cajeros.add(cajero2);cajeros.add(cajero3);cajeros.add(cajero4);cajeros.add(cajero5);cajeros.add(cajero6);
-
         List<Empleados> administrativos = new LinkedList<>();
-        Empleados admin1 = new Administrativo("Alejandro Pereira",2,120000);
-        Empleados admin2 = new Administrativo("Dina Nogales",2,120000);
-        administrativos.add(admin1);administrativos.add(admin2);
-
         List<Empleados> responsablesOperativos = new LinkedList<>();
-        Empleados respOp1 = new ResponsableOperativo("Nancy Prados",1,120000);
-        Empleados respOp2 = new ResponsableOperativo("Beatriz Peñalver",1,150000);
-        Empleados respOp3 = new ResponsableOperativo("Vicente Sierra",1,150000);
-        responsablesOperativos.add(respOp1);responsablesOperativos.add(respOp2);responsablesOperativos.add(respOp3);
-
         List<Empleados> gerentes = new LinkedList<>();
-        Empleados gerente1 = new Gerente("Agusto Sanz",3,250000);
-        gerentes.add(gerente1);
-
         List<Empleados> empleados = new LinkedList<>();
-        empleados.addAll(cajeros);empleados.addAll(administrativos);empleados.addAll(responsablesOperativos);empleados.addAll(gerentes);
         Banco PublicEnemy = new Banco("Public Enemy",empleados,clientes);
 
-        //System.out.println(clientes.size());
-        //System.out.println(PublicEnemy.getNroClientes());
+        Empleados cajero1 = new Cajero("Alberto Megias",0,50000,PublicEnemy);
+        Empleados cajero2 = new Cajero("Augusto Saiz",0,95000,PublicEnemy);
+        Empleados cajero3 = new Cajero("Clotilde Mora",0,95000,PublicEnemy);
+        Empleados cajero4 = new Cajero("Lucas Mariscal",0,95000,PublicEnemy);
+        Empleados cajero5 = new Cajero("Josefa Tortosa",0,95000,PublicEnemy);
+        //Empleados cajero6 = new Cajero("Rayan Borrego",0,95000,PublicEnemy);
+        cajeros.add(cajero1);cajeros.add(cajero2);cajeros.add(cajero3);cajeros.add(cajero4);cajeros.add(cajero5);//cajeros.add(cajero6);
+
+        Empleados admin1 = new Administrativo("Alejandro Pereira",2,120000,PublicEnemy);
+        Empleados admin2 = new Administrativo("Dina Nogales",2,120000,PublicEnemy);
+        administrativos.add(admin1);administrativos.add(admin2);
+
+        Empleados respOp1 = new ResponsableOperativo("Nancy Prados",1,120000,PublicEnemy);
+        Empleados respOp2 = new ResponsableOperativo("Beatriz Peñalver",1,150000,PublicEnemy);
+        Empleados respOp3 = new ResponsableOperativo("Vicente Sierra",1,150000,PublicEnemy);
+        responsablesOperativos.add(respOp1);responsablesOperativos.add(respOp2);responsablesOperativos.add(respOp3);
+
+        Empleados gerente1 = new Gerente("Agusto Sanz",3,250000,PublicEnemy);
+        gerentes.add(gerente1);
+
+        empleados.addAll(cajeros);empleados.addAll(administrativos);empleados.addAll(responsablesOperativos);empleados.addAll(gerentes);
         empleadoQueAtendera(clientes,cajeros,administrativos,gerentes,responsablesOperativos);
 
         System.out.println("");
         System.out.println("===============================CLIENTES=============================");
-        PublicEnemy.getClientes();
+        try {
+            PublicEnemy.getClientes();
+        }catch (Exception e){}
 
-        System.out.println("");
+        System.out.println("\n");
         System.out.println("===============================EMPLEADOS============================");
         PublicEnemy.getEmpleado();
+
+        System.out.println("Reservas : " + PublicEnemy.getReservas());
     }
 
 
@@ -101,8 +103,8 @@ public class Main {
         LocalTime horarioCierre = myObj.plus(Duration.ofMinutes(minutos));
         while (myObj.compareTo(horarioCierre) < 0 && allAtendidos == false){
             myObj = LocalTime.now();
+            allAtendidos = true;
             for(int j = 0; j< clientes.size();j++){
-                allAtendidos = true;
                 Cliente cliente = clientes.get(j);
                 if(cliente.getAtendido() == false){
                     allAtendidos = false;
@@ -151,8 +153,13 @@ public class Main {
                         }
                         case "Prestamo","CambioMoneda" -> {
                             if(administrativos.get(0).atenderCliente(cliente) == false){
-                                sinAtenderCl.add(cliente);
-                                filaASerAtendido(sinAtenderCl,cajeros,  administrativos,  gerentes,  operativos);
+                                if(operativos.get(0).atenderCliente(cliente) == false) {
+                                    sinAtenderCl.add(cliente);
+                                    filaASerAtendido(sinAtenderCl, cajeros, administrativos, gerentes, operativos);
+                                }else{
+                                    filaASerAtendido(sinAtenderCl,cajeros,  administrativos,  gerentes,  operativos);
+                                    continue;
+                                }
                             }else{
                                 filaASerAtendido(sinAtenderCl,cajeros,  administrativos,  gerentes,  operativos);
                                 continue;
@@ -191,7 +198,6 @@ public class Main {
                         case "Deposito" -> {
                             String[] info = cliente.getInfoOperacion().split(" ");
                             if((Integer.parseInt(info[0]) > 100000 && info[1] == "p") || (Integer.parseInt(info[0]) > 10000 && info[1] == "d")) {
-                                //for (int i = 0;i<gerentes.size();i++)
                                     if(true){
                                     Empleados gerente = gerentes.get(0);
                                     if (gerente.atenderCliente(cliente) == true) {
@@ -263,7 +269,7 @@ public class Main {
                                 }
                             }
                         }
-                        case "Prestamo" -> {
+                        case "Prestamo","CambioMoneda" -> {
                             for (int i = 0;i<administrativos.size();i++) {
                                 Empleados administrativo = administrativos.get(i);
                                 if (administrativo.atenderCliente(cliente) == true) {
@@ -277,6 +283,23 @@ public class Main {
                                         toRemove[cont] = cl.indexOf(cliente);
                                         cont++;
                                         break;
+                                    }
+                                }else{
+                                    for(int k = 0; k<operativos.size();k++){
+                                        Empleados operativo = operativos.get(i);
+                                        if (operativo.atenderCliente(cliente) == true) {
+                                            if(toRemove[cont] == -1){
+                                                toRemove[cont] = cl.indexOf(cliente);
+                                                cont++;
+                                                break;
+                                            }else{
+                                                System.out.print("");
+                                                while(toRemove[cont] != -1){cont++;}
+                                                toRemove[cont] = cl.indexOf(cliente);
+                                                cont++;
+                                                break;
+                                            }
+                                        }
                                     }
                                 }
                             }

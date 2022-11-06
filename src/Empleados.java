@@ -29,10 +29,6 @@ abstract class Empleados implements Operaciones {
         LocalTime myObj = LocalTime.now();
         return myObj;
     }
-    protected int getSeconds(){
-        LocalTime myObj = LocalTime.now(); return myObj.getSecond();
-    }
-
     public String getCargo() {
         return cargos[this.cargo];
     }
