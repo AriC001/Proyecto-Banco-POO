@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         LocalTime myObj = LocalTime.now();
         System.out.println(myObj);
 
@@ -70,7 +70,7 @@ public class Main {
         Empleados admin2 = new Administrativo("Dina Nogales",2,120000,PublicEnemy);
         administrativos.add(admin1);administrativos.add(admin2);
 
-        Empleados respOp1 = new ResponsableOperativo("Nancy Prados",1,120000,PublicEnemy);
+        Empleados respOp1 = new ResponsableOperativo("Nancy Prados",1,150000,PublicEnemy);
         Empleados respOp2 = new ResponsableOperativo("Beatriz Peñalver",1,150000,PublicEnemy);
         Empleados respOp3 = new ResponsableOperativo("Vicente Sierra",1,150000,PublicEnemy);
         responsablesOperativos.add(respOp1);responsablesOperativos.add(respOp2);responsablesOperativos.add(respOp3);
@@ -79,23 +79,27 @@ public class Main {
         gerentes.add(gerente1);
 
         empleados.addAll(cajeros);empleados.addAll(administrativos);empleados.addAll(responsablesOperativos);empleados.addAll(gerentes);
+        System.out.println("\u001B[38;5;48m"+"                              ESTÁ ABIERTO EL BANCO PUBLIC ENEMY"+"\u001B[0m");
         empleadoQueAtendera(clientes,cajeros,administrativos,gerentes,responsablesOperativos);
 
         System.out.println("");
-        System.out.println("===============================CLIENTES=============================");
+        System.out.println("\u001B[38;5;106m"+"===============================CLIENTES============================="+"\u001B[0m");
         try {
             PublicEnemy.getClientes();
         }catch (Exception e){}
 
-        System.out.println("\n");
-        System.out.println("===============================EMPLEADOS============================");
+        System.out.println("");
+        System.out.println("\u001B[36m"+"===============================EMPLEADOS============================"+"\u001B[0m");
         PublicEnemy.getEmpleado();
 
-        System.out.println("Reservas : " + PublicEnemy.getReservas());
+        System.out.println("");
+        System.out.println("\u001B[38;5;118m"+"Reservas : " + PublicEnemy.getReservas());
     }
 
 
-    public static void empleadoQueAtendera(List<Cliente> clientes , List<Empleados> cajeros, List<Empleados> administrativos, List<Empleados> gerentes, List<Empleados> operativos){
+    public static void empleadoQueAtendera(List<Cliente> clientes , List<Empleados> cajeros, List<Empleados> administrativos, List<Empleados> gerentes, List<Empleados> operativos) throws InterruptedException {
+        Thread.sleep(2000);
+        System.out.println("Estan ingresando los clientes...");
         LocalTime myObj = LocalTime.now();
         boolean allAtendidos = false;
         List<Cliente> sinAtenderCl = new LinkedList<>();
@@ -172,9 +176,9 @@ public class Main {
                 }
             }
         }
-        System.out.println("                                     EL BANCO HA CERRADO");
+        System.out.println("\u001B[36m"+"                                     EL BANCO HA CERRADO");
         System.out.println("                         No se atenderan más clientes, vuelva mañana");
-        System.out.println("                                       Muchas Gracias");
+        System.out.println("                                       Muchas Gracias"+"\u001B[0m");
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
