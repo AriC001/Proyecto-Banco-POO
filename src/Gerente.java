@@ -23,11 +23,8 @@ public class Gerente extends Empleados {
         int monto = Integer.parseInt(info[0]);
         char moneda = info[1].charAt(0);
         switch (cl.getOperacion()){
-            case "Deposito" -> {
+            case "Deposito","IngresarCheque" -> {
                 return deposito(cl,monto,moneda);
-            }
-            case "Ingresar cheque" -> {
-                return transaccion(cl,monto,moneda);
             }
             case "Transferencia" -> {
                 return transaccion(cl,(-monto),moneda);
@@ -44,11 +41,13 @@ public class Gerente extends Empleados {
                 int saldo = cl.getSaldoPesos();
                 saldo += monto;
                 cl.setSaldoPesos(saldo);
+                System.out.println("Deposito realizado se han Ingresado: " + monto + " pesos");
                 return true;
             }else{
                 int saldo = cl.getSaldoDolares();
                 saldo += monto;
                 cl.setSaldoDolares(saldo);
+                System.out.println("Deposito realizado se han Ingresado: " + monto + " dolares");
                 return true;
             }
         }else{
@@ -71,12 +70,14 @@ public class Gerente extends Empleados {
                 saldo += monto;
                 cl.setSaldoPesos(saldo);
                 cl.setAtendido();
+                System.out.println("Retiro realizado se han retirado: " + (-monto) + " pesos");
                 return true;
             }else{
                 int saldo = cl.getSaldoDolares();
                 saldo += monto;
                 cl.setSaldoDolares(saldo);
                 cl.setAtendido();
+                System.out.println("Retiro realizado se han retirado: " + (-monto) + " dolares");
                 return true;
             }
         }else{
@@ -88,5 +89,9 @@ public class Gerente extends Empleados {
                 return false;
             }
         }
+    }
+
+    public void deleteCliente(Cliente cliente){
+        publicEnemy.deleteCl(cliente);
     }
 }

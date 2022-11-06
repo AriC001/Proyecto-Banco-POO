@@ -4,7 +4,6 @@ public class Cajero extends Empleados {
     Gerente gerente;
     private final Banco publicEnemy;
 
-    //if pendDepo >0 esntonces opera, esta como lo hacemos
 
     public Cajero(String nombre, int carco, int sueldo,Banco banco) {
         super(nombre,carco,sueldo);
@@ -17,14 +16,8 @@ public class Cajero extends Empleados {
         int monto = Integer.parseInt(info[0]);
         char moneda = info[1].charAt(0);
         switch (cl.getOperacion()){
-            case "Deposito" -> {
+            case "Deposito","IngresarCheque" -> {
                 if(deposito(cl,monto,moneda) == true){
-                    subirDeRango();
-                    return true;
-                }
-            }
-            case "Ingresar cheque" -> {
-                if(transaccion(cl,monto,moneda) == true){
                     subirDeRango();
                     return true;
                 }
@@ -58,13 +51,13 @@ public class Cajero extends Empleados {
                 saldo += monto;
                 cl.setSaldoPesos(saldo);
                 cl.setAtendido();
-                //System.out.println(cl.getSaldoPesos());
+                System.out.println("\u001B[38;5;10m"+"Deposito realizado"+"\u001B[0m"+" se han Ingresado: $" + monto +"\u001B[38;5;10m"+" pesos"+"\u001B[0m");
                 return true;
             }else{
                 int saldo = cl.getSaldoDolares();
                 saldo += monto;
                 cl.setSaldoDolares(saldo);
-                //System.out.println(cl.getSaldoDolares());
+                System.out.println("\u001B[38;5;10m"+"Deposito realizado"+"\u001B[0m"+" se han Ingresado: $" + monto +"\u001B[38;5;10m"+" dolares"+"\u001B[0m");
                 cl.setAtendido();
                 return true;
             }
@@ -88,12 +81,14 @@ public class Cajero extends Empleados {
                 saldo += monto;
                 cl.setSaldoPesos(saldo);
                 cl.setAtendido();
+                System.out.println("\u001B[38;5;202m"+"Retiro   realizado"+"\u001B[0m"+" se han retirado :$" + (-monto) + "\u001B[38;5;202m"+" pesos"+"\u001B[0m");
                 return true;
             }else{
                 int saldo = cl.getSaldoDolares();
                 saldo += monto;
                 cl.setSaldoDolares(saldo);
                 cl.setAtendido();
+                System.out.println("\u001B[38;5;202m"+"Retiro   realizado"+"\u001B[0m"+" se han retirado :$" + (-monto) + "\u001B[38;5;202m"+" dolares"+"\u001B[0m");
                 return true;
             }
         }else{

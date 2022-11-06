@@ -40,11 +40,6 @@ abstract class Empleados implements Operaciones {
     }
     public abstract boolean atenderCliente(Cliente cl);
 
-    public void imprimirDatos(){
-        System.out.print("Nombre: " + this.name);
-        System.out.print(" Cargo: "+ getCargo());
-        System.out.println(" Sueldo: $" + this.sueldo);
-    }
 
     //@Override
     //public boolean atenderCliente(Cliente cl, int monto, char moneda) {

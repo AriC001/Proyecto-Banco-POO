@@ -46,5 +46,23 @@ public class Banco {
     public int getReservas(){
         return this.reservas;
     }
+
+    public void showPrestamos(List<Cliente> clientes){
+        for(Cliente cliente: clientes ){
+            String[] tipo = cliente.getOperacion().split(" ");
+            String[] info = cliente.getInfoOperacion().split(" ");
+            if(cliente.getAtendido() == true && tipo[0].equals("Prestamo")){
+                System.out.println("\u001B[38;5;226m"+cliente.getOperacion()+"\u001B[0m" + " otorgado por un monto de: $" + Integer.parseInt(info[0]));
+            }
+        }
+    }
+
+    public void deleteCl(Cliente clienteAEliminar){
+        for(Cliente cliente : this.clientes){
+            if(cliente.equals(clienteAEliminar)){ //Comprobación para verificar si el cliente que nos mandan realmente es cliente del banco
+                this.clientes.remove(clienteAEliminar);
+            }
+        }
+    }
 }
 

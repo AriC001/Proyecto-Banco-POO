@@ -1,4 +1,4 @@
-public class Cliente {
+public class Cliente extends AccountType{
     private String name;
     private int dNI;
     private int saldoPesos;
@@ -11,8 +11,8 @@ public class Cliente {
     Banco cliente;
     //private String accountType;
 
-    public Cliente(String name, int dNI, int saldoPesos, int saldoDolares,int valAcc,String op,int monto,char moneda) {
-        //super(1,0);
+    public Cliente(String name, int dNI, int saldoPesos, int saldoDolares,int valAcc,String op,int monto,char moneda,int CC,int CA) {
+        super(CC,CA);
         //this.cliente = cliente;
         //cliente.nroClientes +=1;
         this.operacion = op;
@@ -26,7 +26,8 @@ public class Cliente {
             a.Acciones((valAcc));
         }
     }
-    public Cliente(String name, int dNI, int saldoPesos, int saldoDolares,int valAcc,String op) {
+    /*public Cliente(String name, int dNI, int saldoPesos, int saldoDolares,int valAcc,String op,int CC,int CA) {
+        super(CC,CA);
         this.operacion = op;
         this.name = name;
         this.dNI = dNI;
@@ -36,11 +37,11 @@ public class Cliente {
             Coorporativo a = new Coorporativo();
             a.Acciones((valAcc));
         }
-    }
+    }*/
 
 
     public void imprimirDatos(){
-        System.out.print("\u001B[38;5;214m"+"Nombre: "+"\u001B[0m"+this.name +"\u001B[38;5;214m"+ " DNI: " +"\u001B[0m"+this.dNI +"\u001B[38;5;214m");
+        System.out.print("\u001B[38;5;214m"+"Nombre: "+"\u001B[0m"+this.name +"\u001B[38;5;214m"+ " DNI: " +"\u001B[0m"+this.dNI +"\u001B[38;5;214m"+ "\u001B[38;5;214m" + "Tipo de Cuenta: "+"\u001B[38;5;214m" +  getAccountType());
         if (this.saldoPesos < 0) {
             System.out.print("\u001B[38;5;214m"+" Saldo Pesos: "+"\u001B[0m"+"\u001B[38;5;196m"+"$"+this.saldoPesos+"\u001B[38;5;0m");
         }else{System.out.print("\u001B[38;5;214m"+" Saldo Pesos: "+"\u001B[0m"+"$"+this.saldoPesos);}
@@ -123,10 +124,13 @@ public class Cliente {
     public void setPrestamo(int prestamo) {
         this.prestamo = prestamo;
     }
-    /*public void Oper(){
-        Operaciones op = new Operaciones();
-        switch(random){
-            case 1 -> op.deposito(this.Cliente);  //no se si se puede hacer esto
+
+    public String getAccountType(){
+        if(this.cuentaCorrientes == true){
+            return "Cuenta Corriente";
+        }else{
+            return "Cuenta de Ahorro";
         }
-    }*/
+
+    }
 }
